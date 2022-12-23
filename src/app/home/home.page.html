@@ -1,0 +1,88 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Angular Reactive Forms
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="userForm"  (ngSubmit)="onSubmit(userForm.value)">
+    <ion-item>
+      <ion-label position="stacked">First Name:</ion-label>
+    <ion-input type="text" placeholder="Enter First Name" formControlName="firstname"></ion-input>    
+  </ion-item>
+  <div class="error-container">
+    <ng-container *ngFor="let validation of validation_messages.firstname">
+      <div class="error-message" *ngIf="userForm.get('firstname').hasError(validation.type) && (userForm.get('firstname').dirty || userForm.get('firstname').touched)">
+        <ion-icon name="information-circle"></ion-icon>
+        <span>{{ validation.message }}</span>
+      </div>
+    </ng-container>
+  </div>
+  <ion-item>
+    <ion-label position="stacked">Last Name: </ion-label>
+  <ion-input type="text" placeholder="Enter Last Name" formControlName="lastname"></ion-input>    
+</ion-item>
+<div class="error-container">
+  <ng-container *ngFor="let validation of validation_messages.lastname">
+    <div class="error-message" *ngIf="userForm.get('lastname').hasError(validation.type) && (userForm.get('lastname').dirty || userForm.get('lastname').touched)">
+      <ion-icon name="information-circle"></ion-icon>
+      <span>{{ validation.message }}</span>
+    </div>
+  </ng-container>
+</div>
+<ion-item>
+  <ion-label position="stacked">Gender: </ion-label>
+<ion-select formControlName="gender" placeholder="Select Gender">
+<ion-select-option value="male">Male</ion-select-option> 
+<ion-select-option value="female">Female</ion-select-option>
+</ion-select>    
+</ion-item>
+<div class="error-container">
+  <ng-container *ngFor="let validation of validation_messages.gender">
+    <div class="error-message" *ngIf="userForm.get('gender').hasError(validation.type) && (userForm.get('gender').dirty || userForm.get('gender').touched)">
+      <ion-icon name="information-circle"></ion-icon>
+      <span>{{ validation.message }}</span>
+    </div>
+  </ng-container>
+</div>
+<ion-item>
+  <ion-label position="stacked">Age: </ion-label>
+<ion-input type="number" placeholder="Enter Age" formControlName="age"></ion-input>    
+</ion-item>
+<div class="error-container">
+  <ng-container *ngFor="let validation of validation_messages.age">
+    <div class="error-message" *ngIf="userForm.get('age').hasError(validation.type) && (userForm.get('age').dirty || userForm.get('age').touched)">
+      <ion-icon name="information-circle-outline"></ion-icon>
+      <span>{{ validation.message }}</span>
+    </div>
+  </ng-container>
+</div>
+<ion-item>
+  <ion-label position="stacked">Email Address: </ion-label>
+<ion-input type="text" placeholder="Enter Email Address" formControlName="email"></ion-input>    
+</ion-item>
+<div class="error-container">
+  <ng-container *ngFor="let validation of validation_messages.email">
+    <div class="error-message" *ngIf="userForm.get('email').hasError(validation.type) && (userForm.get('email').dirty || userForm.get('email').touched)">
+      <ion-icon name="information-circle-outline"></ion-icon>
+      <span>{{ validation.message }}</span>
+    </div>
+  </ng-container>
+</div>
+<ion-item>
+  <ion-label position="stacked">Password:</ion-label>
+<ion-input type="password" placeholder="Enter Password" formControlName="password"></ion-input>    
+</ion-item>
+<div class="error-container">
+  <ng-container *ngFor="let validation of validation_messages.password">
+    <div class="error-message" *ngIf="userForm.get('password').hasError(validation.type) && (userForm.get('password').dirty || userForm.get('password').touched)">
+      <ion-icon name="information-circle-outline"></ion-icon>
+      <span>{{ validation.message }}</span>
+    </div>
+  </ng-container>
+</div>
+<ion-button type="submit" expand="block" shape="round" [disabled]="!userForm.valid">Submit Form</ion-button>
+  </form>
+</ion-content>
